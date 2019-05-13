@@ -1,5 +1,24 @@
-#contain-div {
+html {
   font-family: Arial, sans-serif;
+}
+
+.menubar {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  text-align: center;
+}
+
+.centered-element {
+  margin: auto;
+  text-align: center;
+}
+
+ul { display:table; margin:0 auto;}
+
+a {
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 span {
@@ -9,7 +28,31 @@ span {
 
 img {
   position: relative;
+  margin: 10px;
   z-index: 1;
+}
+
+input, button { margin-bottom: 10px; }
+
+#messages-list-div {
+  width: 80%;
+  text-align: inherit;
+}
+
+#submitMessage {
+  background-color: green;
+}
+
+#clearMessage {
+  background-color: red;
+}
+
+#printMessage {
+  background-color: yellow;
+}
+
+#deleteMessage {
+  background-color: #5DBCD2;
 }
 
 #vertical {

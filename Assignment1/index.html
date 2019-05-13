@@ -6,19 +6,43 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
-  <div id="container-div">
-    <p>
-      <span>Hello!</span>
-    </p>
-    <img id='picture' src="https://i.imgur.com/fC3hBIz.jpg" alt="Test_Kitten" width="200px">
-    <div>
-      <button id="vertical" class="button_stuff" onclick="moveVertical();">
-      Vertical Steven
-      </button>
-      <button id="horizontal" class="button_stuff" onclick="moveHorizontal();">
-       Horizontal Steven
-      </button>
-    </div>
+<body onload="initializeHTML();">
+  <div class="menubar">
+    <p> <a href="index.html">Main</a> <a href="about.html">About Me</a> </p>
+  </div>
+  <br>
+  <div class="centered-element">
+    <h3> Welcome to my message board! </h3>
+  </div>
+  <br>
+  <div class="centered-element">
+    Enter a message: <input type="text" id="message" placeholder="your message"><br>
+    Enter an optional alias: <input type="text" id="alias" placeholder="your alias">
+    <br>
+    <button id="submitMessage" onclick="submitMessage();">
+    Submit message
+    </button>
+    <button id="clearMessage" onclick="clearMessage();">
+    Clear message
+    </button>
+    <br>
+    <button id="printMessage" onclick="printMessage();">
+    Print JSON string to console
+    </button>
+    <br>
+    <button id="deleteMessage" onclick="deleteMessage();">
+    DELETE EVERYTHING
+    </button>
+  </div>
+  <div class="centered-element">
+
+  </div>
+  <br>
+  <div class="centered-element">
+    <h3> Messages </h3>
+  </div>
+  <div class="centered-element" id="messages-list-div">
+    <ul id="messages-list">
+    <ul>
   </div>
 </body></html>
