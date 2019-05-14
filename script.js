@@ -32,17 +32,17 @@ function createElement(message, alias, id) {
 
 
 function submitMessage() {
-  let message = document.getElementById("message").value;
-  if (message.length == 0) {
+  let message = document.getElementById("message");
+  if (message.value.length == 0) {
     alert("You must enter a message!");
     return;
   }
-  let alias = document.getElementById("alias").value;
-  if (alias == "") {
+  let alias = document.getElementById("alias");
+  if (alias.value.length == 0) {
     alias = "Anonymous";
   }
   let list = document.getElementById("messages-list");
-  let newElement = createElement(message, alias, maxId);
+  let newElement = createElement(message.value, alias.value, maxId);
   let jsonElement = {
     "id": maxId,
     "message": message,
@@ -52,6 +52,8 @@ function submitMessage() {
   messages.push(jsonElement);
   list.appendChild(newElement);
   console.log(jsonElement);
+  message.value = "";
+  alias.value = "";
   return false;
 }
 
