@@ -21,15 +21,9 @@ a {
   margin-right: 80px;
 }
 
-span {
-  background-color: #98FB98;
-  font-size: 3rem;
-}
-
 img {
   position: relative;
   margin: 10px;
-  z-index: 1;
 }
 
 input, button { margin-bottom: 10px; }
@@ -39,32 +33,18 @@ input, button { margin-bottom: 10px; }
   text-align: inherit;
 }
 
-#submitMessage {
+#submitButton {
   background-color: green;
 }
 
-#clearMessage {
+#clearButton {
   background-color: red;
 }
 
-#printMessage {
+#printButton {
   background-color: yellow;
 }
 
-#deleteMessage {
+#deleteButton {
   background-color: #5DBCD2;
-}
-
-#vertical {
-  background-color: blue;
-  color: #FFFFFF;
-}
-
-#horizontal {
-  background-color: yellow;
-}
-
-.button_stuff {
-  position: relative;
-  z-index: 2;
 }

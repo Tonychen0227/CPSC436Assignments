@@ -1,41 +1,35 @@
 <html><head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Nice</title>
+  <title>CPSC 436I Assignment 1</title>
   <script type="text/javascript" src="script.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body onload="initializeHTML();">
   <div class="menubar">
-    <p> <a href="index.html">Main</a> <a href="about.html">About Me</a> </p>
+    <p> <a href="index.html">Home </a> <a href="about.html">About Me</a> </p>
   </div>
   <br>
   <div class="centered-element">
     <h3> Welcome to my message board! </h3>
   </div>
   <br>
-  <div class="centered-element">
+  <form class="centered-element" onsubmit="event.preventDefault(); submitMessage();">
     Enter a message: <input type="text" id="message" placeholder="your message"><br>
     Enter an optional alias: <input type="text" id="alias" placeholder="your alias">
     <br>
-    <button id="submitMessage" onclick="submitMessage();">
-    Submit message
-    </button>
-    <button id="clearMessage" onclick="clearMessage();">
-    Clear message
-    </button>
-    <br>
-    <button id="printMessage" onclick="printMessage();">
+    <input type="submit" id="submitButton" value="Submit Message">
+    <input type="reset" id="clearButton" value="Clear message">
+  </form>
+  <div class="centered-element">
+    <button id="printButton" onclick="printMessage();">
     Print JSON string to console
     </button>
     <br>
-    <button id="deleteMessage" onclick="deleteMessage();">
+    <button id="deleteButton" onclick="deleteMessage();">
     DELETE EVERYTHING
     </button>
-  </div>
-  <div class="centered-element">
-
   </div>
   <br>
   <div class="centered-element">

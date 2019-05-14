@@ -10,7 +10,8 @@ function renderList() {
   let list = document.getElementById("messages-list");
   list.innerHTML = "";
   for (var x = 0; x < messages.length; x++) {
-    let newElement = createElement(messages[x].message, messages[x].alias, messages[x].id);
+    let newElement = createElement(messages[x].message,
+       messages[x].alias, messages[x].id);
     list.appendChild(newElement);
   }
 }
@@ -28,6 +29,7 @@ function createElement(message, alias, id) {
   newElement.appendChild(button);
   return newElement;
 }
+
 
 function submitMessage() {
   let message = document.getElementById("message").value;
@@ -49,6 +51,8 @@ function submitMessage() {
   maxId++;
   messages.push(jsonElement);
   list.appendChild(newElement);
+  console.log(jsonElement);
+  return false;
 }
 
 function clearMessage() {
@@ -64,8 +68,9 @@ function printMessage() {
 
 
 function deleteMessage() {
-  if (window.prompt("This will cause immense destruction. Remove? Type 'Yes' to confirm",
-  "No") != "Yes") {
+  if (window.prompt(
+    "Are you sure you want to delete all? Type 'Yes' to confirm", "No") != "Yes"
+  ) {
     alert("Operation cancelled");
     return;
   }
