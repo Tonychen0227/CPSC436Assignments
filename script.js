@@ -45,13 +45,12 @@ function submitMessage() {
   let newElement = createElement(message.value, alias.value, maxId);
   let jsonElement = {
     "id": maxId,
-    "message": message,
-    "alias": alias
+    "message": message.value,
+    "alias": alias.value
   }
   maxId++;
   messages.push(jsonElement);
   list.appendChild(newElement);
-  console.log(jsonElement);
   message.value = "";
   alias.value = "";
   return false;
