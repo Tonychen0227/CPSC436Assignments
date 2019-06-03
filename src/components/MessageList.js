@@ -6,7 +6,6 @@ import MessageItem from './MessageItem';
 class InputField extends React.Component {
 	render() {
 		const element = document.createElement("ul");
-		console.log(this.props.messages);
 		for (var x; x < this.props.messages.length; x++) {
 			var base = document.createElement("LI");
 			var textnode = document.createTextNode(this.props.messages[x]);
@@ -16,6 +15,7 @@ class InputField extends React.Component {
 		}
 		return (<div>
 			<h1>List of messages</h1>
+			<h3>Click a message to reveal details</h3>
 			{this.props.messages.map((message, index) => (
 				<MessageItem key={index} message={message} />
 			))}

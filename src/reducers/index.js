@@ -14,6 +14,9 @@ const messageReducer = (messages = [
     maxId = maxId + 1;
     return messages.concat(toAdd);
   }
+  if (action.type === 'DELETE_MESSAGE') {
+    return messages.filter( (item) => item.id !== action.payload)
+  }
   return messages;
 }
 

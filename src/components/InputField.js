@@ -26,7 +26,14 @@ class InputField extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		if (this.state.text == "") {
+			alert("May not have an empty message!");
+			return;
+		}
 		this.props.addMessage(this.state.text, this.state.details);
+		this.setState({
+			text: "",
+			details: ""});
 	}
 
 	handleClear(event) {
@@ -39,12 +46,15 @@ class InputField extends React.Component {
           Name:
           <input type="text" value={this.state.text} onChange={this.handleChangeText}/>
         </label>
+				<br/>
 				<label>
 					Details:
 					<input type="text" value={this.state.details} onChange={this.handleChangeDetail}/>
 				</label>
 				<br/>
         <input type="submit" value="Send Message" />
+				<br/>
+				<input type="reset" onClick={this.handleClear} value="Reset Inputs" />
       </form>
 
 );

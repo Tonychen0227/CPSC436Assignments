@@ -6,3 +6,11 @@ export const addMessage = (message, details) => {
     payloadDeets: details
   };
 };
+
+export const deleteMessage = (id) => {
+  return {
+    //Payloads can be several, just cannot be duplicate names, think JSON
+    type: 'DELETE_MESSAGE',
+    payload: id
+  };
+};
