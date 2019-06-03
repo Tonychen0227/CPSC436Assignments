@@ -1,25 +1,20 @@
 import React from 'react';
+import './MessageList.css';
 import { connect } from 'react-redux';
 import { addMessage } from '../actions';
 import MessageItem from './MessageItem';
 
 class InputField extends React.Component {
 	render() {
-		const element = document.createElement("ul");
-		for (var x; x < this.props.messages.length; x++) {
-			var base = document.createElement("LI");
-			var textnode = document.createTextNode(this.props.messages[x]);
-
-			base.appendChild(textnode.text);
-			element.appendChild(base);
-		}
 		return (<div>
-			<h1>List of messages</h1>
-			<h3>Click a message to reveal details</h3>
+			<h3>List of messages</h3>
+			<h5>Click a message to reveal details</h5>
+			<ul>
 			{this.props.messages.map((message, index) => (
 				<MessageItem key={index} message={message} />
 			))}
-			</div>
+		</ul>
+		</div>
 );
 	}
 }

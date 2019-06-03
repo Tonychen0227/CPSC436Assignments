@@ -1,4 +1,5 @@
 import React from 'react';
+import './InputField.css';
 import { connect } from 'react-redux';
 import { addMessage } from '../actions';
 
@@ -27,10 +28,17 @@ class InputField extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		if (this.state.text == "") {
-			alert("May not have an empty message!");
+			alert("May not have an empty message text!");
 			return;
 		}
-		this.props.addMessage(this.state.text, this.state.details);
+		if (this.state.details == "") {
+			this.setState({
+				text: this.state.text,
+				details: "No Details Provided"});
+			this.props.addMessage(this.state.text, "no details provided");
+		} else {
+			this.props.addMessage(this.state.text, this.state.details);
+		}
 		this.setState({
 			text: "",
 			details: ""});
@@ -41,9 +49,12 @@ class InputField extends React.Component {
 	}
 
 	render() {
-		return (<form onSubmit={this.handleSubmit}>
+		return (<div>
+			<h1> Welcome to my message board! </h1>
+			<h3> Add a new message: </h3>
+			<form onSubmit={this.handleSubmit} className="InputField">
         <label>
-          Name:
+          Text:
           <input type="text" value={this.state.text} onChange={this.handleChangeText}/>
         </label>
 				<br/>
@@ -53,10 +64,9 @@ class InputField extends React.Component {
 				</label>
 				<br/>
         <input type="submit" value="Send Message" />
-				<br/>
 				<input type="reset" onClick={this.handleClear} value="Reset Inputs" />
       </form>
-
+</div>
 );
 	}
 }

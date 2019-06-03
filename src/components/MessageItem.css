@@ -1,0 +1,17 @@
+li {
+  text-align: left;
+  margin: 5px;
+}
+
+.hidden .body {
+  color: blue;
+  text-decoration: underline;
+}
+
+.shown {
+  color: magenta;
+}
+
+button {
+  background-color: red;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './MessageItem.css';
 import { connect } from 'react-redux';
 import { deleteMessage } from '../actions';
 
@@ -22,11 +23,11 @@ class MessageItem extends React.Component {
 
 	render() {
 		return (
-			<li id={this.props.message.id}>
-				<span onClick={() => this.handleClick()}>
+			<li id={this.props.message.id} className={this.state.showDetails ? "shown" :"hidden"}>
+				<span onClick={() => this.handleClick()} className="body">
 					{this.props.message.text}
 				</span>
-				<b> {this.state.showDetails ? '-' + this.props.message.details:""} </b>
+				<span> {this.state.showDetails ? '- ' + this.props.message.details:""} </span>
 				<button type="button" onClick={() => this.handleDelete(this.props.message.id)}>Delete Me!</button>
 			</li>
 );
