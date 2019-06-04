@@ -22,7 +22,7 @@ const messageReducer = (messages = [
 
 const detailReducer = (detailIndex = 0, action) => {
   if (action.type === 'DISPLAY_DETAIL') {
-    return action.payload;
+    detailIndex = action.payload;
   }
   return detailIndex;
 }

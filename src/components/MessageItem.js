@@ -33,8 +33,8 @@ class MessageItem extends React.Component {
 					{this.props.message.text}
 				</span>
 				<span> {this.state.showDetails ? '- ' + this.props.message.details:""} </span>
-				<button type="button" class="delete" onClick={() => this.handleDelete(this.props.message.id)}>Delete Me!</button>
-				<button type="button" class="detail" onClick={() => this.handleShowDetail(this.props.message.id)}>Display Details in view</button>
+				<button type="button" className="delete" onClick={() => this.handleDelete(this.props.message.id)}>Delete Me!</button>
+				<button type="button" className="detail" onClick={() => this.handleShowDetail(this.props.message.id)}>Display Details in view</button>
 			</li>
 );
 	}
