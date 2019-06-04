@@ -20,7 +20,15 @@ const messageReducer = (messages = [
   return messages;
 }
 
+const detailReducer = (detailIndex = 0, action) => {
+  if (action.type === 'DISPLAY_DETAIL') {
+    return action.payload;
+  }
+  return detailIndex;
+}
+
 export default combineReducers ({
-  messages: messageReducer
+  messages: messageReducer,
+  detailIndex: detailReducer
   //anotherKey: anotherReducer (all your reducers should be combined)
 });

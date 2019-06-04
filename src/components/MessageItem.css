@@ -13,5 +13,13 @@ li {
 }
 
 button {
+  margin: 5px;
+}
+
+button.delete {
   background-color: red;
+}
+
+button.detail {
+  background-color: teal;
 }

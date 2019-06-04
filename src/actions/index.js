@@ -14,3 +14,10 @@ export const deleteMessage = (id) => {
     payload: id
   };
 };
+
+export const showDetail = (id) => {
+  return {
+    type: 'DISPLAY_DETAIL',
+    payload: id
+  }
+}
