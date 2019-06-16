@@ -7,10 +7,12 @@ import MessageItem from './MessageItem';
 import DetailView from './DetailView';
 import { bindActionCreators } from 'redux'
 
-class InputField extends React.Component {
+class MessageList extends React.Component {
 	render() {
-		console.log(this.props.getMessage());
-		console.log(this.props.messages);
+		this.props.getMessage();
+		if (!this.props.messageProgress) {
+			
+		}
 		return (<div>
 			<h3>Detail View</h3>
 			<DetailView/>
@@ -38,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputField);
+export default connect(mapStateToProps, mapDispatchToProps)(MessageList);
