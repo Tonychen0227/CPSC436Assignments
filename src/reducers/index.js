@@ -1,21 +1,45 @@
 import {combineReducers} from 'redux';
-var maxId = 3;
+const axios = require('axios');
 
-const messageReducer = (messages = [
-  {"text": "Hello world",
-  "id": 1, "details": "Boo!"}, {"text": "Goodbye world",
-  "id": 2, "details": "Foo!"}], action) => {
+const url = "http://localhost:3001/messages";
+
+const messageReducer = (messages = [], action) => {
+  if (action.type === "GET_MESSAGE") {
+    axios.get(url)
+      .then(response => {
+        console.log(response.data);
+        messages = response.data;
+        return messages;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   if (action.type === 'ADD_MESSAGE') {
-    var toAdd = {};
-    toAdd["text"] = action.payloadText;
-    console.log(action.payloadDeets);
-    toAdd["details"] = action.payloadDeets;
-    toAdd["id"] = maxId;
-    maxId = maxId + 1;
-    return messages.concat(toAdd);
+    axios.post(url, {
+      text: action.payloadText,
+      details: action.payloadDeets
+    })
+    .then(response => {
+      console.log(response.data);
+      messages = response.data;
+      return messages;
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
   if (action.type === 'DELETE_MESSAGE') {
-    return messages.filter( (item) => item.id !== action.payload)
+    axios.delete(url, {
+      idToDelete: action.payload
+    }).then(response => {
+      console.log(response.data);
+      messages = response.data;
+      return messages;
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
   return messages;
 }

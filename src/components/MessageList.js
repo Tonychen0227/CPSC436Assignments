@@ -2,11 +2,15 @@ import React from 'react';
 import './MessageList.css';
 import { connect } from 'react-redux';
 import { addMessage } from '../actions';
+import { getMessage } from '../actions';
 import MessageItem from './MessageItem';
 import DetailView from './DetailView';
+import { bindActionCreators } from 'redux'
 
 class InputField extends React.Component {
 	render() {
+		console.log(this.props.getMessage());
+		console.log(this.props.messages);
 		return (<div>
 			<h3>Detail View</h3>
 			<DetailView/>
@@ -27,4 +31,11 @@ const mapStateToProps = (state) => { //name is by convention
 return { messages: state.messages }; //now it will appear as props
 }
 
-export default connect(mapStateToProps, {addMessage})(InputField);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addMessage: bindActionCreators(addMessage, dispatch),
+    getMessage: bindActionCreators(getMessage, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputField);

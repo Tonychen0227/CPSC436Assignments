@@ -21,3 +21,9 @@ export const showDetail = (id) => {
     payload: id
   }
 }
+
+export const getMessage = () => {
+  return {
+    type: 'GET_MESSAGE'
+  }
+}
