@@ -15,7 +15,7 @@ const messageReducer = (messages = [], action) => {
         messages[x].details = action.payloadDeets;
       }
     }
-    axios.post(url, {
+    axios.put(url, {
       id: action.payloadId,
       text: action.payloadText,
       details: action.payloadDeets
@@ -59,6 +59,7 @@ const messageReducer = (messages = [], action) => {
 }
 
 const detailReducer = (detailIndex = 0, action) => {
+  console.log(action.payload);
   if (action.type === 'DISPLAY_DETAIL') {
     detailIndex = action.payload;
   }

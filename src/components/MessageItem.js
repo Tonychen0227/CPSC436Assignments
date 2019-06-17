@@ -49,7 +49,7 @@ class MessageItem extends React.Component {
 	render() {
 		return (
 			<li id={this.props.message.id} className={this.state.showDetails ? "shown" :"hidden"}>
-				<span onClick={() => this.handleEdit()} className="body" hidden={this.state.showEdit}>
+				<span onClick={() => this.handleShowDetail(this.props.message.id)} className="body" hidden={this.state.showEdit}>
 					{this.props.message.text}
 				</span>
 				<span hidden={this.state.showEdit}> {this.state.showDetails ? '- ' + this.props.message.details:""} </span>
