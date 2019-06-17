@@ -15,6 +15,13 @@ export const deleteMessage = (id) => {
   };
 };
 
+export const deleteAllMessages = () => {
+  return {
+    //Payloads can be several, just cannot be duplicate names, think JSON
+    type: 'DELETE_MESSAGE'
+  };
+};
+
 export const showDetail = (id) => {
   return {
     type: 'DISPLAY_DETAIL',
@@ -25,5 +32,21 @@ export const showDetail = (id) => {
 export const getMessage = () => {
   return {
     type: 'GET_MESSAGE'
+  }
+}
+
+export const editMessage = (id, message, details) => {
+  return {
+    type: 'EDIT_MESSAGE',
+    payloadText: message,
+    payloadId: id,
+    payloadDeets: details
+  }
+}
+
+export const loadMessage = (messageList) => {
+  return {
+    type: 'LOAD_MESSAGE',
+    payload: messageList
   }
 }

@@ -23,3 +23,11 @@ button.delete {
 button.detail {
   background-color: teal;
 }
+
+button.edit {
+  background-color: orange;
+}
+
+button.submit {
+  background-color: green;
+}

@@ -16,7 +16,9 @@ router.post('/', function(req, res, next) {
     res.status(500).send("You must include message text! E.g. {text: x, details: x}");
     return;
   }
-  req.body.id = shortid.generate();
+  if (req.body.id == null) {
+    req.body.id = shortid.generate();
+  }
   messages.push(req.body);
   res.json(messages);
 })

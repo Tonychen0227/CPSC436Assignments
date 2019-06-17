@@ -26,7 +26,6 @@ class InputField extends React.Component {
 	}
 
 	handleSubmit(event) {
-		event.preventDefault();
 		if (this.state.text == "") {
 			alert("May not have an empty message text!");
 			return;
