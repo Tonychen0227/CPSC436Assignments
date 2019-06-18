@@ -59,7 +59,6 @@ const messageReducer = (messages = [], action) => {
 }
 
 const detailReducer = (detailIndex = 0, action) => {
-  console.log(action.payload);
   if (action.type === 'DISPLAY_DETAIL') {
     detailIndex = action.payload;
   }

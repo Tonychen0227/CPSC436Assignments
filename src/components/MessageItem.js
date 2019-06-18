@@ -9,6 +9,7 @@ class MessageItem extends React.Component {
 		this.state = {
 			showDetails: false,
 			showEdit: false,
+			id: '',
 			text: '',
 			details: ''
 		}
@@ -17,7 +18,8 @@ class MessageItem extends React.Component {
 		this.handleShowDetail = this.handleShowDetail.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
 		this.populateEdit = this.populateEdit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+		this.handleChangeText = this.handleChangeText.bind(this);
+		this.handleChangeDetail = this.handleChangeDetail.bind(this);
 	}
 
 	handleClick() {
@@ -33,27 +35,54 @@ class MessageItem extends React.Component {
 	}
 
 	handleEdit(e) {
-		e.preventDefault();
-		console.log(e)
-	}
-
-	handleChange(e) {
-		console.log(e);
-	}
-
-	populateEdit() {
+		if (this.state.text == "") {
+			alert("May not have an empty message text!");
+			return;
+		}
+		if (this.state.details == "") {
+			this.setState({
+				text: this.state.text,
+				details: "No Details Provided"});
+			//TODO: ADD EDIT MESSAGE
+			console.log(this.state);
+		} else {
+			//TODO: ADD EDIT MESSAGE
+			console.log(this.state);
+		}
 		this.setState({
-			showEdit: !this.state.showEdit,});
+			showEdit: false
+		});
+	}
+
+	handleChangeText(event) {
+		this.setState({
+			text: event.target.value,
+			details: this.state.details});
+	}
+
+	handleChangeDetail(event) {
+		this.setState({
+			text: this.state.text,
+			details: event.target.value});
+	}
+
+	populateEdit(id, text, details) {
+		this.setState({
+			id: id,
+			showDetails: false,
+			showEdit: !this.state.showEdit,
+			text: text,
+			details: details});
 	}
 
 	render() {
 		return (
 			<li id={this.props.message.id} className={this.state.showDetails ? "shown" :"hidden"}>
-				<span onClick={() => this.handleShowDetail(this.props.message.id)} className="body" hidden={this.state.showEdit}>
+				<span onClick={() => this.handleClick()} className="body" hidden={this.state.showEdit}>
 					{this.props.message.text}
 				</span>
 				<span hidden={this.state.showEdit}> {this.state.showDetails ? '- ' + this.props.message.details:""} </span>
-				<form onChange={this.handleChange} onSubmit={this.handleEdit} className="EditField" hidden={!this.state.showEdit}>
+				<form onSubmit={this.handleEdit} className="EditField" hidden={!this.state.showEdit}>
 					<label>
 						Text:
 						<input type="text" defaultValue={this.props.message.text} onChange={this.handleChangeText}/>
@@ -67,7 +96,7 @@ class MessageItem extends React.Component {
 				</form>
 				<button type="button" className="delete" onClick={() => this.handleDelete(this.props.message.id)}>Delete Me!</button>
 				<button type="button" className="detail" onClick={() => this.handleShowDetail(this.props.message.id)}>Display Details in view</button>
-				<button type="button" className="edit" onClick={() => this.populateEdit()}>Edit</button>
+				<button type="button" className="edit" onClick={() => this.populateEdit(this.props.message.id, this.props.message.text, this.props.message.details)}>Edit</button>
 			</li>
 );
 	}

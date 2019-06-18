@@ -25,6 +25,7 @@ class MessageList extends React.Component {
 			initialized = true;
 			axios.get(url)
 				.then(response => {
+					console.log(response);
 					this.props.loadMessage(response.data);
 				})
 				.catch(error => {
