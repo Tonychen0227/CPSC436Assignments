@@ -28,7 +28,6 @@ router.delete('/', function(req, res, next) {
     messages = [];
   }
   else if (req.body.idToDelete != null){
-    console.log(req.body.idToDelete === messages[0].id);
     messages = messages.filter( (item) => item.id !== req.body.idToDelete)
   }
   res.json(messages);

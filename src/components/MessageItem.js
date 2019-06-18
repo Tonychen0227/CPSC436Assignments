@@ -41,13 +41,13 @@ class MessageItem extends React.Component {
 		}
 		if (this.state.details == "") {
 			this.setState({
-				text: this.state.text,
-				details: "No Details Provided"});
+				details: "No Details Provided"
+			});
 			//TODO: ADD EDIT MESSAGE
-			console.log(this.state);
+			this.props.editMessage(this.state.id, this.state.text, this.state.details);
 		} else {
 			//TODO: ADD EDIT MESSAGE
-			console.log(this.state);
+			this.props.editMessage(this.state.id, this.state.text, this.state.details);
 		}
 		this.setState({
 			showEdit: false
@@ -89,7 +89,7 @@ class MessageItem extends React.Component {
 					</label>
 					<label>
 						Details:
-						<input type="text" defaultValue={this.props.message.details} onChange={this.handleChangeText}/>
+						<input type="text" defaultValue={this.props.message.details} onChange={this.handleChangeDetail}/>
 					</label>
 					<input type="submit" value="Send Edit" />
 					<input type="reset" onClick={this.handleClear} value="Reset Inputs" />
@@ -107,4 +107,4 @@ const mapStateToProps = (state) => { //name is by convention
 return { messages: state.messages}; //now it will appear as props
 }
 
-export default connect(mapStateToProps, {deleteMessage, showDetail})(MessageItem);
+export default connect(mapStateToProps, {editMessage, deleteMessage, showDetail})(MessageItem);

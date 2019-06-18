@@ -47,7 +47,9 @@ const messageReducer = (messages = [], action) => {
       messages = messages.filter( (item) => item.id !== action.payload);
     }
     axios.delete(url, {
-      idToDelete: action.payload
+      data: {
+        idToDelete: action.payload
+      }
     }).then(response => {
       messages = response.data;
     })
