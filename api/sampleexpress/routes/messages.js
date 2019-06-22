@@ -1,14 +1,18 @@
 var express = require('express');
 var router = express.Router();
 const shortid = require('shortid');
+var Messages = require('../mongo/messages.js')
 
-var messages = [{"text": "Hello world",
-  "id": shortid.generate(), "details": "Boo!"}, {"text": "Goodbye world",
-  "id": shortid.generate(), "details": "Foo!"}]
+var messages = []
 
 /* GET users listing. */
 router.get('/', function(req, res, next){
-  res.json(messages);
+  Messages.getMessages().then(success => {
+    messages = success
+    res.json(messages)
+  }).catch(err => {
+    next(err);
+  })
 });
 
 router.post('/', function(req, res, next) {
@@ -19,18 +23,48 @@ router.post('/', function(req, res, next) {
   if (req.body.id == null) {
     req.body.id = shortid.generate();
   }
-  messages.push(req.body);
-  res.json(messages);
+  var parsedMessage = {
+    "id": req.body.id,
+    "text": req.body.text,
+    "details": req.body.details
+  }
+  Messages.insertMessage(parsedMessage).then(success => {
+    Messages.getMessages().then(success => {
+      messages = success
+      res.json(messages)
+    }).catch(err => {
+      throw new Error(err);
+    })
+      }).catch(err => {
+        next(err);
+      })
 })
 
 router.delete('/', function(req, res, next) {
   if (req.body == null || req.body.idToDelete == null) {
-    messages = [];
+    Messages.deleteAllMessages().then(success => {
+      Messages.getMessages().then(success => {
+        messages = success
+        res.json(messages)
+      }).catch(err => {
+        throw new Error(err);
+      })
+    }).catch(err => {
+      next(err);
+    })
   }
   else if (req.body.idToDelete != null){
-    messages = messages.filter( (item) => item.id !== req.body.idToDelete)
+    Messages.deleteMessage(req.body.idToDelete).then(success => {
+      Messages.getMessages().then(success => {
+        messages = success
+        res.json(messages)
+      }).catch(err => {
+        throw new Error(err);
+      })
+    }).catch(err => {
+      next(err);
+    })
   }
-  res.json(messages);
 })
 
 router.put('/', function(req, res, next) {
@@ -42,14 +76,19 @@ router.put('/', function(req, res, next) {
     res.status(500).send("You must include message text! E.g. {id: x, text: x, details: x}");
     return;
   }
-  for (var x = 0; x < messages.length; x++) {
-    if (messages[x].id == req.body.id) {
-      messages[x].details = req.body.details;
-      messages[x].text = req.body.text;
-      break;
-    }
+  if (!req.body.details) {
+    req.body.details = ""
   }
-  res.json(messages);
+  Messages.updateOneMessage(req.body.id, req.body.text, req.body.details).then(success => {
+    Messages.getMessages().then(success => {
+      messages = success
+      res.json(messages)
+    }).catch(err => {
+      throw new Error(err);
+    })
+  }).catch(err => {
+    next(err);
+  })
 })
 
 module.exports = router;
