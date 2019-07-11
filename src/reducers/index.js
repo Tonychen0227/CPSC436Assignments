@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 const axios = require('axios');
 const shortid = require('shortid');
 
-const url = "http://localhost:3001/messages";
+const url = "http://cpsc436assignmentapitony.herokuapp.com/messages";
 
 const messageReducer = (messages = [], action) => {
   if (action.type === "LOAD_MESSAGE") {
