@@ -7,7 +7,7 @@ import DetailView from './DetailView';
 import { bindActionCreators } from 'redux'
 import axios from "axios";
 
-const url = "http://localhost:3001/messages";
+const url = "http://cpsc436assignmentapitony.herokuapp.com/messages";
 
 var initialized = false;
 
